@@ -11,7 +11,7 @@ mark where you are, and every file in the explorer gets its logo on a soft cloud
 Search for **Vanessë** in the Extensions view, or from a terminal:
 
 ```sh
-code --install-extension thedavidkoen.vanesse
+code --install-extension davidkoen.vanesse
 ```
 
 Then, from the Command Palette:

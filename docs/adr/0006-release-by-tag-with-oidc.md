@@ -56,4 +56,4 @@ trusted publishing.
 | Marketplace (Manage) scope | The token cannot touch anything else in Azure DevOps |
 
 - The token expires, and must be renewed in Azure DevOps and in the environment secret before it does.
-- A leaked token could publish to the `thedavidkoen` publisher until revoked. Revoke it in Azure DevOps first, then replace the secret.
+- A leaked token could publish to the `davidkoen` publisher until revoked. Revoke it in Azure DevOps first, then replace the secret.
