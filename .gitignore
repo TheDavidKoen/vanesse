@@ -1,0 +1,42 @@
+node_modules/
+themes/
+*.vsix
+
+# credentials, never commit
+.env
+.env.*
+*.pem
+*.key
+
+# local assistant instructions and working notes, deliberately untracked
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+/NOTES.md
+/notes.md
+/PLAN.md
+/plan.md
+/TODO.md
+/todo.md
+/notes/
+/plans/
+/scratch/
+/drafts/
+*.local.md
+
+# logs and tool output
+*.log
+npm-debug.log*
+pnpm-debug.log*
+coverage/
+.vscode-test/
+.biome/
+
+# editor and OS files
+.idea/
+*.code-workspace
+.history/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

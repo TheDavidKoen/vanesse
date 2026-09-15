@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Types
+        run: pnpm run typecheck
+
+      - name: Lint and format
+        run: pnpm run lint
+
+      - name: Tests and contrast floor
+        run: pnpm test
+
+      - name: Build
+        run: pnpm run build
+
+      # Enforces ADR 0004: the VSIX may contain only the theme and its docs.
+      - name: Package allowlist
+        run: pnpm run check:package
+
+      - name: Package
+        run: pnpm run package
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: vanesse-vsix
+          path: "*.vsix"
+          retention-days: 7
