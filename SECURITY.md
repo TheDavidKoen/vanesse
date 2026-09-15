@@ -45,7 +45,8 @@ the repository and never reach an editor.
 
 ## Publishing credentials
 
-No publishing token is stored in this repository or any committed file. Open VSX uses
-short-lived OIDC credentials. The Marketplace token is a secret on the `release`
-environment, scoped to Marketplace publishing only, and readable only by a `v` tag release
-after the maintainer approves it. See [ADR 0006](docs/adr/0006-release-by-tag-with-oidc.md).
+No publishing token or secret exists anywhere, for either registry. Open VSX uses
+short-lived OIDC credentials, issued only to a `v` tag release after the maintainer approves
+the `release` environment. The VS Code Marketplace receives the same VSIX from the GitHub
+release by manual upload, signed in to the publisher account. See
+[ADR 0006](docs/adr/0006-release-by-tag-with-oidc.md).
