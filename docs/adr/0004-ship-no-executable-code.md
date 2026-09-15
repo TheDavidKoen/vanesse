@@ -16,7 +16,7 @@ icons from a JSON file and SVGs, all named in `package.json`.
 
 - No `main` or `browser` entry, no activation events, no contributed commands or settings.
 - No runtime dependencies.
-- The package is an allowlist: `.vscodeignore` excludes everything except the docs,
+- The package is an allowlist: `.vscodeignore` excludes everything except the docs, the listing icon,
   `package.json` and `themes/`, and `scripts/check-package.ts` fails CI if `vsce ls` reports
   anything but the expected files. The icon SVGs it expects come from `src/icons/glyphs.ts`.
 - Publishing credentials never enter the repository. The one stored credential, a Marketplace token, lives only on the approval-gated `release` environment, see ADR 0006.

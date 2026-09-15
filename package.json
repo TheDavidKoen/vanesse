@@ -4,6 +4,7 @@
   "description": "A bold dark theme of gold, violet and cyan on a deep night sky, with matching cloud badge file icons.",
   "version": "0.1.0",
   "publisher": "thedavidkoen",
+  "icon": "images/icon.png",
   "private": true,
   "license": "MIT",
   "type": "module",
