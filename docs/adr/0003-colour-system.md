@@ -4,77 +4,85 @@
 
 ## Context
 
-The theme blends two looks that pull in opposite directions. The elven half wants soft,
-low-saturation silver and gold on deep blue-black. The arcade half wants saturated neon.
-Both fail easily on a dark ground: soft colours sink into it, and dark themes commonly drop
-comments to around 3:1 so they recede.
+A dark theme needs saturated colour so it does not feel flat, but saturated colour on a dark
+ground fails easily. Bright hues vibrate against each other, muted ones sink into the
+background, and dark themes commonly drop comments to around 3:1 so they recede.
 
 ## Decision
 
-Three layers, each with one job:
+Four layers, each with one job:
 
-- **Surfaces** are five steps of blue-black, darkest at the bezel (title, activity and
-  status bars) and lightest for floating widgets.
-- **Elven colours carry the code.** Silver, gold, blade blue, teal, moss, violet, mist and
-  ember cover every syntax role.
-- **Arcade colours carry state.** Coin yellow marks where you are, neon magenta marks counts
-  and progress, and the four ghost colours mark diagnostics.
+- **Surfaces** are five steps of violet-tinted night, darkest at the frame (title, activity
+  and tab bars) and lightest for floating widgets, plus a plum banner for the status bar.
+- **Warm and cool accents carry the code.** Gold, sky, teal, lime, violet, mist and amber
+  cover every syntax role.
+- **Vivid accents carry state.** Lemon marks where you are, magenta marks active edges,
+  counts and progress, and cyan marks focus. Red, orange, cyan and pink mark diagnostics.
+- **Weight carries structure.** Control flow, class names, constants and tags are bold.
+  Storage words, parameters, attributes, decorators and comments are italic.
 
 Every pairing below uses WCAG 2.2 relative luminance, and `src/roles.test.ts` asserts the
 floor for each.
 
 ## Syntax, measured
 
-The current line composites to `#161B2A` and a selection to `#2A3F59`.
+The current line composites to `#191935` and a selection to `#403868`.
 
-| Roles | Hex | Editor `#0E1322` | Current line | Selection |
+| Roles | Hex | Editor `#0D1026` | Current line | Selection |
 |---|---|---|---|---|
-| escape | `#FFE14D` | 14.21 | 13.17 | 8.26 |
-| variable | `#D7DDEA` | 13.59 | 12.59 | 7.89 |
-| string | `#B6DA8A` | 11.79 | 10.93 | 6.85 |
-| keyword, tag, heading | `#E9C46A` | 11.07 | 10.27 | 6.43 |
-| type | `#6ED8CC` | 10.89 | 10.09 | 6.33 |
-| property | `#A9C1E8` | 10.12 | 9.38 | 5.88 |
-| function, link | `#7CC2FF` | 9.71 | 9.00 | 5.64 |
-| regexp, decorator | `#F2A25C` | 8.90 | 8.25 | 5.17 |
-| parameter, attribute | `#B8A6F8` | 8.68 | 8.04 | 5.04 |
-| number, constant | `#F585D6` | 8.11 | 7.52 | 4.71 |
-| operator | `#A0AAC0` | 7.94 | 7.36 | 4.61 |
-| invalid | `#FF5F6D` | 6.26 | 5.81 | 3.64 |
-| comment | `#8490AB` | 5.78 | 5.36 | 3.36 |
+| escape | `#FFE93D` | 15.17 | 13.78 | 8.56 |
+| variable | `#DCE3F2` | 14.58 | 13.24 | 8.22 |
+| string | `#A5E86B` | 12.83 | 11.65 | 7.24 |
+| keyword, tag, heading | `#FFCB5C` | 12.46 | 11.32 | 7.03 |
+| type | `#3FE6C4` | 11.91 | 10.82 | 6.72 |
+| property | `#9FC2FF` | 10.40 | 9.45 | 5.87 |
+| function, link | `#5CC8FF` | 9.97 | 9.06 | 5.63 |
+| regexp, decorator | `#FF9E57` | 9.19 | 8.35 | 5.18 |
+| operator | `#A3ACC7` | 8.29 | 7.54 | 4.68 |
+| parameter, attribute | `#B794FF` | 7.77 | 7.06 | 4.38 |
+| number, constant | `#FF5CCB` | 6.83 | 6.21 | 3.85 |
+| comment | `#8A93BF` | 6.26 | 5.69 | 3.53 |
+| invalid | `#FF4F64` | 5.86 | 5.32 | 3.30 |
 
 Floors: 4.5:1 on the editor and current line, 3:1 inside a selection. A selection is
-transient, and primary text still reads at 7.89:1 inside one.
+transient, and primary text still reads at 8.22:1 inside one.
 
 ## Interface, measured
 
-| Role | Bezel `#07090F` | Shade `#0B0F1A` | Editor `#0E1322` | Widget `#161D33` | Floor |
-|---|---|---|---|---|---|
-| primary `#D7DDEA` | 14.62 | 14.05 | 13.59 | 12.26 | 4.5 |
-| secondary `#A0AAC0` | 8.54 | 8.21 | 7.94 | 7.16 | 4.5 |
-| muted `#8490AB` | 6.22 | 5.98 | 5.78 | 5.21 | 4.5 |
-| faint `#5D6883` | 3.58 | 3.44 | 3.32 | 3.00 | 3 |
-| focus ring `#7CC2FF` | 10.44 | 10.04 | 9.71 | 8.76 | 3 |
+| Role | Frame `#06050F` | Shade `#0A0B1C` | Editor `#0D1026` | Widget `#171A38` | Banner `#1C1045` | Floor |
+|---|---|---|---|---|---|---|
+| primary `#DCE3F2` | 15.74 | 15.14 | 14.58 | 13.14 | 13.49 | 4.5 |
+| secondary `#A3ACC7` | 8.96 | 8.61 | 8.29 | 7.48 | 7.68 | 4.5 |
+| muted `#8A93BF` | 6.76 | 6.50 | 6.26 | 5.64 | 5.79 | 4.5 |
+| gold `#FFCB5C` | 13.46 | 12.95 | 12.46 | 11.24 | 11.53 | 4.5 |
+| highlight `#FFE93D` | 16.38 | 15.75 | 15.17 | 13.68 | 14.04 | 4.5 |
+| faint `#5F6690` | 3.66 | 3.52 | 3.39 | 3.05 | 3.13 | 3 |
+| focus ring `#2EF0F0` | 14.32 | 13.77 | 13.26 | 11.95 | 12.27 | 3 |
+| vivid edge `#FF5CCB` | 7.38 | 7.10 | 6.83 | 6.16 | 6.32 | 3 |
 
-| Filled accent | Text `#07090F` on it |
+Highlight text on a selected explorer item reads at 9.08:1, and primary text on a find match
+at 6.77:1.
+
+| Filled accent | Text `#06050F` on it |
 |---|---|
-| Button, leaf gold `#E9C46A` | 11.91 |
-| Button hover, coin yellow `#FFE14D` | 15.29 |
-| Badge, neon magenta `#F585D6` | 8.73 |
-| Debugging status bar, ghost red `#FF5F6D` | 6.74 |
+| Button, gold `#FFCB5C` | 13.46 |
+| Button hover, lemon `#FFE93D` | 16.38 |
+| Badge, magenta `#FF5CCB` | 7.38 |
+| Debugging status bar, red `#FF4F64` | 6.32 |
 
-Diagnostics and git decorations are measured on the side bar `#0B0F1A`, where they appear
-as text: error 6.48, warning 10.85, info 12.75, hint 11.99, added 12.20, conflict 8.39.
-Terminal colours are measured on the same ground, and the lowest is `brightBlack` at 5.98.
+Diagnostics and git decorations are measured on the side bar `#0A0B1C`, where they appear
+as text: error 6.08, warning 10.56, info 13.77, hint 11.03, added 13.32, conflict 7.10.
+Terminal text is mint at 15.83:1 on `#06050F`, and the lowest ANSI colour is red at 6.32.
 
 ## Consequences
 
 - Comments are brighter than many dark themes make them. That is the price of AA, and italic
   does the work of making them recede.
 - `faint` is the only text below 4.5:1. It is reserved for line numbers, ignored files and
-  input borders, never content. On widgets it sits on its 3:1 floor, so it must not darken.
-- `ansi.black` is `#232C47`, 1.39:1 on the terminal. Terminal programs use it as a
+  input borders, never content. On widgets it sits at 3.05:1, just above its floor, so it
+  must not darken.
+- `ansi.black` is `#2A2F5C`, 1.60:1 on the terminal. Terminal programs use it as a
   background, so it is excluded from the text floor deliberately.
-- `ridge` borders are 1.34:1 and purely decorative. Any boundary a user must see to operate
-  a control uses `faint` or the focus ring.
+- `ridge` borders are 1.48:1 and purely decorative. Any boundary a user must see to operate
+  a control uses `faint`, the focus ring or the vivid edge.
 - A new surface means a new column here, and a new assertion, before any text is put on it.

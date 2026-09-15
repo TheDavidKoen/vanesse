@@ -1,4 +1,4 @@
-# 0004. Ship colour data only, never executable code
+# 0004. Ship theme data only, never executable code
 
 **Status:** Accepted, amended by [0006](0006-release-by-tag-with-oidc.md) · 2026-09-15
 
@@ -9,15 +9,16 @@ files, network and credentials as the user. Marketplace extensions are an establ
 supply-chain target, and a theme is exactly the kind of extension people install without
 reading.
 
-A theme needs none of that access. VS Code reads its colours from a JSON file named in
-`package.json`.
+A theme needs none of that access. VS Code reads its colours from a JSON file and its file
+icons from a JSON file and SVGs, all named in `package.json`.
 
 ## Decision
 
 - No `main` or `browser` entry, no activation events, no contributed commands or settings.
 - No runtime dependencies.
-- The package is an allowlist: `.vscodeignore` excludes everything and names the five files
-  that ship, and `scripts/check-package.ts` fails CI if `vsce ls` reports anything else.
+- The package is an allowlist: `.vscodeignore` excludes everything except the docs,
+  `package.json` and `themes/`, and `scripts/check-package.ts` fails CI if `vsce ls` reports
+  anything but the expected files. The icon SVGs it expects come from `src/icons/glyphs.ts`.
 - Publishing credentials never enter the repository. The one stored credential, a Marketplace token, lives only on the approval-gated `release` environment, see ADR 0006.
 
 ## Rationale
@@ -29,7 +30,9 @@ package, which a blocklist would not catch.
 ## Consequences
 
 - Features that need code, such as a command that switches variants, are out of scope.
-  Variants ship as additional entries in `contributes.themes`.
-- Adding a file to the package means editing both `.vscodeignore` and `ALLOWED_FILES`,
-  which is intended friction.
-- Nothing activates. VS Code loads one JSON file of about 13 KB when the theme is selected.
+  Variants ship as additional entries in `contributes.themes` or `contributes.iconThemes`.
+- Adding a file outside `themes/` to the package means editing both `.vscodeignore` and
+  `ALLOWED_FILES`, which is intended friction. Icons need neither, because both lists follow
+  the glyph catalogue.
+- Nothing activates. The whole package is about 90 KB, and VS Code loads only the icon SVGs
+  the explorer actually shows.

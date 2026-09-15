@@ -18,27 +18,19 @@ export const tokens: TokenColor[] = [
   rule(["comment", "punctuation.definition.comment"], syntax.comment, "italic"),
   rule(["variable", "meta.definition.variable.name"], syntax.variable),
   rule(["keyword.operator", "punctuation"], syntax.operator),
-  rule(
-    [
-      "keyword",
-      "storage.type",
-      "storage.modifier",
-      "keyword.operator.new",
-      "keyword.operator.expression",
-    ],
-    syntax.keyword,
-  ),
+  rule(["keyword", "keyword.operator.new", "keyword.operator.expression"], syntax.keyword),
+  rule(["keyword.control"], syntax.keyword, "bold"),
+  rule(["storage.type", "storage.modifier"], syntax.keyword, "italic"),
   rule(["variable.language"], syntax.keyword, "italic"),
   rule(["string", "punctuation.definition.string"], syntax.string),
-  rule(["constant.character.escape"], syntax.escape),
+  rule(["constant.character.escape"], syntax.escape, "bold"),
   rule(["string.regexp"], syntax.regexp),
   rule(["constant.numeric", "keyword.other.unit"], syntax.number),
-  rule(["constant.language", "support.constant"], syntax.constant),
+  rule(["constant.language", "support.constant"], syntax.constant, "bold"),
   rule(["entity.name.function", "support.function", "meta.function-call.generic"], syntax.function),
   rule(
     [
       "entity.name.type",
-      "entity.name.class",
       "entity.name.namespace",
       "entity.other.inherited-class",
       "support.type",
@@ -46,7 +38,8 @@ export const tokens: TokenColor[] = [
     ],
     syntax.type,
   ),
-  rule(["variable.parameter"], syntax.parameter),
+  rule(["entity.name.class"], syntax.type, "bold"),
+  rule(["variable.parameter"], syntax.parameter, "italic"),
   rule(
     [
       "variable.other.property",
@@ -57,9 +50,9 @@ export const tokens: TokenColor[] = [
     ],
     syntax.property,
   ),
-  rule(["entity.name.tag"], syntax.tag),
-  rule(["support.class.component"], syntax.type),
-  rule(["entity.other.attribute-name"], syntax.attribute),
+  rule(["entity.name.tag"], syntax.tag, "bold"),
+  rule(["support.class.component"], syntax.type, "bold"),
+  rule(["entity.other.attribute-name"], syntax.attribute, "italic"),
   rule(
     [
       "punctuation.decorator",
@@ -67,6 +60,7 @@ export const tokens: TokenColor[] = [
       "meta.decorator entity.name.function",
     ],
     syntax.decorator,
+    "italic",
   ),
   rule(["markup.heading", "entity.name.section"], syntax.heading, "bold"),
   style(["markup.bold"], "bold"),

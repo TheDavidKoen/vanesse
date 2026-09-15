@@ -1,7 +1,7 @@
 {
   "name": "vanesse",
   "displayName": "Vanessë",
-  "description": "A dark theme where elven silver and gold meet arcade phosphor and neon.",
+  "description": "A bold dark theme of gold, violet and cyan on a deep night sky, with matching cloud badge file icons.",
   "version": "0.1.0",
   "publisher": "thedavidkoen",
   "private": true,
@@ -27,15 +27,15 @@
     "vanesse",
     "theme",
     "dark",
-    "fantasy",
-    "elven",
-    "arcade",
-    "retro",
-    "neon",
-    "crt"
+    "dark theme",
+    "color theme",
+    "icon theme",
+    "file icons",
+    "violet",
+    "colorful"
   ],
   "galleryBanner": {
-    "color": "#07090F",
+    "color": "#06050F",
     "theme": "dark"
   },
   "contributes": {
@@ -44,6 +44,13 @@
         "label": "Vanessë",
         "uiTheme": "vs-dark",
         "path": "./themes/vanesse-color-theme.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "vanesse-icons",
+        "label": "Vanessë Icons",
+        "path": "./themes/vanesse-icon-theme.json"
       }
     ]
   },
@@ -64,6 +71,7 @@
     "@types/node": "^24.13.4",
     "@vscode/vsce": "^3.9.2",
     "ovsx": "^1.2.0",
+    "simple-icons": "^16.31.0",
     "typescript": "^7.0.2"
   }
 }

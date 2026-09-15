@@ -1,32 +1,34 @@
-/* Every raw colour in the theme, named for what it evokes. No other file writes a hex
-   value, and the theme emitters never import this file directly. */
+/* Every raw colour in the theme, named by hue. No other file writes a hex value, and the
+   theme emitters never import this file directly. */
 
 export const palette = {
-  bezel: "#07090F",
-  shade: "#0B0F1A",
-  ground: "#0E1322",
-  raise: "#161D33",
-  ridge: "#232C47",
+  void: "#06050F",
+  shade: "#0A0B1C",
+  ground: "#0D1026",
+  raise: "#171A38",
+  ridge: "#2A2F5C",
+  plum: "#1C1045",
 
-  moonSilver: "#D7DDEA",
-  ashSilver: "#A0AAC0",
-  duskGrey: "#8490AB",
-  shadowGrey: "#5D6883",
+  silver: "#DCE3F2",
+  ash: "#A3ACC7",
+  slate: "#8A93BF",
+  smoke: "#5F6690",
 
-  leafGold: "#E9C46A",
-  emberAmber: "#F2A25C",
-  bladeBlue: "#7CC2FF",
-  elvenTeal: "#6ED8CC",
-  mossGreen: "#B6DA8A",
-  twilightViolet: "#B8A6F8",
-  mistBlue: "#A9C1E8",
+  gold: "#FFCB5C",
+  amber: "#FF9E57",
+  sky: "#5CC8FF",
+  teal: "#3FE6C4",
+  lime: "#A5E86B",
+  violet: "#B794FF",
+  mist: "#9FC2FF",
 
-  coinYellow: "#FFE14D",
-  neonMagenta: "#F585D6",
-  ghostRed: "#FF5F6D",
-  ghostOrange: "#FFB454",
-  ghostCyan: "#5EE6EB",
-  ghostPink: "#FFB8DE",
+  lemon: "#FFE93D",
+  magenta: "#FF5CCB",
+  mint: "#6BFF9C",
+  red: "#FF4F64",
+  orange: "#FFAE3D",
+  cyan: "#2EF0F0",
+  pink: "#FFA8DC",
 
   white: "#FFFFFF",
 } as const;
