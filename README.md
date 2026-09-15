@@ -4,6 +4,8 @@
 theme. Gold, violet and cyan sit on a deep violet night sky, a lemon cursor and magenta edges
 mark where you are, and every file in the explorer gets its logo on a soft cloud badge.
 
+![Vanessë in VS Code: TypeScript files in a split editor, the cloud badge file icons in the explorer, and the terminal](docs/images/preview.png)
+
 ## Install
 
 Search for **Vanessë** in the Extensions view, or from a terminal:
