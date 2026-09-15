@@ -18,7 +18,7 @@ A theme needs none of that access. VS Code reads its colours from a JSON file na
 - No runtime dependencies.
 - The package is an allowlist: `.vscodeignore` excludes everything and names the five files
   that ship, and `scripts/check-package.ts` fails CI if `vsce ls` reports anything else.
-- No long-lived publishing credential exists anywhere. Releases use short-lived OIDC credentials, see ADR 0006.
+- Publishing credentials never enter the repository. The one stored credential, a Marketplace token, lives only on the approval-gated `release` environment, see ADR 0006.
 
 ## Rationale
 

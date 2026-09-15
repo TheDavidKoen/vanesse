@@ -74,15 +74,11 @@ jobs:
           name: vanesse-vsix
           path: dist
 
-      - uses: azure/login@v3
-        with:
-          client-id: ${{ vars.AZURE_CLIENT_ID }}
-          tenant-id: ${{ vars.AZURE_TENANT_ID }}
-          allow-no-subscriptions: true
-
       # --skip-duplicate makes re-running a partially failed release safe.
       - name: VS Code Marketplace
-        run: pnpm exec vsce publish --packagePath dist/*.vsix --azure-credential --skip-duplicate
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: pnpm exec vsce publish --packagePath dist/*.vsix --skip-duplicate
 
       - name: Open VSX
         run: pnpm exec ovsx publish dist/*.vsix --skip-duplicate
