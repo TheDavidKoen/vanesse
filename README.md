@@ -182,10 +182,11 @@ git push origin v0.2.0
 | Publish | Waits for approval on the `release` environment, then publishes to the Marketplace and Open VSX |
 | GitHub release | Attaches the same VSIX, with the changelog entry as notes |
 
-No publishing token exists anywhere. The Marketplace accepts a short-lived Microsoft Entra ID
-credential and Open VSX uses trusted publishing, both minted from GitHub's OIDC token. See
-[ADR 0006](docs/adr/0006-release-by-tag-with-oidc.md). Both publish steps skip versions that
-already exist, so a failed release is re-run from the Actions tab.
+Open VSX uses trusted publishing, minted from GitHub's OIDC token, so no Open VSX token
+exists. The Marketplace uses a `VSCE_PAT` secret that only the approval-gated `release`
+environment can read. See [ADR 0006](docs/adr/0006-release-by-tag-with-oidc.md). Both
+publish steps skip versions that already exist, so a failed release is re-run from the
+Actions tab.
 
 ## Not affiliated
 

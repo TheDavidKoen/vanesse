@@ -40,7 +40,7 @@ repository and never reach an editor.
 
 ## Publishing credentials
 
-No Marketplace or Open VSX token is stored in this repository, its CI secrets or any
-committed file. Releases publish from `.github/workflows/release.yml` with short-lived OIDC
-credentials, only from a `v` tag, and only after the maintainer approves the `release`
-environment. See [ADR 0006](docs/adr/0006-release-by-tag-with-oidc.md).
+No publishing token is stored in this repository or any committed file. Open VSX uses
+short-lived OIDC credentials. The Marketplace token is a secret on the `release`
+environment, scoped to Marketplace publishing only, and readable only by a `v` tag release
+after the maintainer approves it. See [ADR 0006](docs/adr/0006-release-by-tag-with-oidc.md).
