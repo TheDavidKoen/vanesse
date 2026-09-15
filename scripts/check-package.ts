@@ -2,6 +2,7 @@
    tooling or a stray secret can never be published. Run through pnpm so vsce is on the PATH. */
 
 import { execSync } from "node:child_process";
+import { glyphs } from "../src/icons/glyphs.ts";
 
 const ALLOWED_FILES = [
   "CHANGELOG.md",
@@ -9,6 +10,8 @@ const ALLOWED_FILES = [
   "README.md",
   "package.json",
   "themes/vanesse-color-theme.json",
+  "themes/vanesse-icon-theme.json",
+  ...Object.keys(glyphs).map((name) => `themes/icons/${name}.svg`),
 ];
 
 const packaged = execSync("vsce ls --no-dependencies", { encoding: "utf8" })

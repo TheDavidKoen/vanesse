@@ -9,7 +9,7 @@ Only the latest published version is supported.
 
 ## What the extension can do
 
-Nothing beyond colouring the editor. Vanessë:
+Nothing beyond colouring the editor and drawing file icons. Vanessë:
 
 - declares no `main` or `browser` entry point, so VS Code never executes code from it
 - declares no activation events, commands, settings or permissions
@@ -17,7 +17,7 @@ Nothing beyond colouring the editor. Vanessë:
 - has no runtime dependencies
 
 The published package contains exactly these files, checked on every pull request by
-`scripts/check-package.ts`:
+`scripts/check-package.ts`, which takes the list of icon files from `src/icons/glyphs.ts`:
 
 ```text
 package.json
@@ -25,15 +25,19 @@ README.md
 CHANGELOG.md
 LICENSE
 themes/vanesse-color-theme.json
+themes/vanesse-icon-theme.json
+themes/icons/<icon>.svg, one per icon
 ```
 
-The TypeScript source, tests, scripts and every development dependency stay in the
-repository and never reach an editor.
+The icon SVGs are plain paths and fills. They contain no scripts, links or external
+references. The TypeScript source, tests, scripts and every development dependency stay in
+the repository and never reach an editor.
 
 ## Supply chain
 
 - pnpm's minimum release age keeps versions published within the last day out of the lockfile
 - Dependency build scripts run only when allowed by name in `pnpm-workspace.yaml`
+- Simple Icons is read at build time for logo paths only, and nothing from the package ships
 - CI installs with `--frozen-lockfile`, runs with a read-only token and does not persist checkout credentials
 - Dependabot keeps the GitHub Actions current
 - Release tags cannot be moved or deleted, enforced by a repository ruleset

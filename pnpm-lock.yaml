@@ -20,6 +20,9 @@ importers:
       ovsx:
         specifier: ^1.2.0
         version: 1.2.0(@types/node@24.13.4)(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
+      simple-icons:
+        specifier: ^16.31.0
+        version: 16.31.0
       typescript:
         specifier: ^7.0.2
         version: 7.0.2
@@ -1486,6 +1489,10 @@ packages:
 
   simple-get@4.0.1:
     resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
+
+  simple-icons@16.31.0:
+    resolution: {integrity: sha512-dDEqvQrmxL7ZnqQtGHGjCNW6CfiwzAif+83Hol9JXAnAB6wh2zsZD7Sc1kWT0O/RRAKt7xfG8W6UZhYBPD+GAA==}
+    engines: {node: '>=0.12.18'}
 
   simple-invariant@2.0.1:
     resolution: {integrity: sha512-1sbhsxqI+I2tqlmjbz99GXNmZtr6tKIyEgGGnJw/MKGblalqk/XoOYYFJlBzTKZCxx8kLaD3FD5s9BEEjx5Pyg==}
@@ -3144,6 +3151,8 @@ snapshots:
       once: 1.4.0
       simple-concat: 1.0.1
     optional: true
+
+  simple-icons@16.31.0: {}
 
   simple-invariant@2.0.1: {}
 

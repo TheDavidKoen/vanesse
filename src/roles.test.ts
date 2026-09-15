@@ -26,10 +26,11 @@ describe("syntax colours", () => {
 
 describe("interface text", () => {
   const surfaces = {
-    bezel: surface.bezel,
+    frame: surface.frame,
     shade: surface.shade,
     editor: surface.editor,
     widget: surface.widget,
+    banner: surface.banner,
   };
 
   for (const [name, background] of Object.entries(surfaces)) {
@@ -37,14 +38,25 @@ describe("interface text", () => {
       it(`${role} text clears AA on the ${name}`, () =>
         assertContrast(text[role], background, AA_TEXT));
     }
+    it(`gold text clears AA on the ${name}`, () =>
+      assertContrast(accent.primary, background, AA_TEXT));
+    it(`highlight text clears AA on the ${name}`, () =>
+      assertContrast(accent.highlight, background, AA_TEXT));
     it(`faint text clears 3:1 on the ${name}`, () =>
       assertContrast(text.faint, background, AA_NON_TEXT));
     it(`the focus ring clears 3:1 on the ${name}`, () =>
       assertContrast(accent.focus, background, AA_NON_TEXT));
+    it(`the vivid edge clears 3:1 on the ${name}`, () =>
+      assertContrast(accent.vivid, background, AA_NON_TEXT));
   }
 
+  const selection = flatten(surface.selection, surface.editor);
+  const listSelection = flatten(surface.selection, surface.shade);
+
   it("primary text clears AA inside a selection", () =>
-    assertContrast(text.primary, flatten(surface.selection, surface.editor), AA_TEXT));
+    assertContrast(text.primary, selection, AA_TEXT));
+  it("highlight text clears AA on a selected list item", () =>
+    assertContrast(accent.highlight, listSelection, AA_TEXT));
   it("primary text clears AA on a find match", () =>
     assertContrast(text.primary, flatten(surface.findMatch, surface.editor), AA_TEXT));
 });
@@ -71,8 +83,11 @@ describe("signals", () => {
 });
 
 describe("terminal colours", () => {
+  it("terminal text clears AA on the terminal", () =>
+    assertContrast(text.terminal, surface.terminal, AA_TEXT));
+
   for (const [name, color] of Object.entries(ansi)) {
     if (name === "black") continue;
-    it(`${name} clears AA on the terminal`, () => assertContrast(color, surface.shade, AA_TEXT));
+    it(`${name} clears AA on the terminal`, () => assertContrast(color, surface.terminal, AA_TEXT));
   }
 });

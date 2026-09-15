@@ -11,11 +11,11 @@ must follow the commit format below. Force pushes and deletions are blocked.
 
 | Prefix | For |
 |---|---|
-| `feat/` | New colours, new coverage, new variants |
-| `fix/` | A colour that is wrong, unreadable or missing |
+| `feat/` | New colours, new icons, new file mappings |
+| `fix/` | A colour or icon that is wrong, unreadable or missing |
 | `chore/` | Tooling, dependencies, config |
 | `docs/` | Documentation only |
-| `refactor/` | Restructuring without changing the generated theme |
+| `refactor/` | Restructuring without changing the generated themes |
 
 Branches are deleted once merged. See [ADR 0002](docs/adr/0002-github-flow.md). A merged
 branch is spent: GitHub will not reopen its pull request for new commits, so further work
@@ -48,25 +48,32 @@ That runs the type check, Biome, the tests, the build and the package allowlist.
 clean. CI runs the same steps, so a red check means one of them failed. Reproduce it locally
 rather than pushing again to see.
 
-Then check by eye in the Extension Development Host (**F5**):
+Then check by eye in the Extension Development Host (**F5**), with both **Vanessë** and
+**Vanessë Icons** selected:
 
 - A TypeScript, a Markdown and a JSON file
 - The find widget, a selection, and a file with a problem squiggle
 - The source control view with added, modified and deleted files
 - The integrated terminal running something colourful, such as `git log --graph --oneline`
 - **Editor: Semantic Highlighting** both on and off
+- The explorer in a real project, looking for files that fall back to the plain file icon
 
 ## Code conventions
 
-**Hex values go in `src/palette.ts` and nowhere else.** `src/theme/theme.test.ts` fails on a
-hex literal in `roles.ts` or any emitter.
+**Hex values go in `src/palette.ts` and nowhere else.** The tests fail on a hex literal in
+`roles.ts` or any emitter under `src/theme/` or `src/icons/`.
 
-**Emitters read roles, never the palette.** `workbench.ts`, `tokens.ts` and `semantic.ts`
-import from `roles.ts`, so recolouring a concept is one edit. Also enforced by test.
+**Emitters read roles, never the palette.** Theme and icon files import from `roles.ts`, so
+recolouring a concept is one edit. Also enforced by test.
 
 **A new role or surface is measured before it ships.** Add the assertion to
 `src/roles.test.ts` and the row to [ADR 0003](docs/adr/0003-colour-system.md) in the same
 change.
+
+**An icon arrives with its mappings.** Add the glyph to `src/icons/glyphs.ts` and at least
+one file, extension or folder name to `src/icons/icon-theme.ts` together.
+`icon-theme.test.ts` fails on an icon nothing uses. Icon colours come from the `icon` roles,
+never from a brand's own colours.
 
 **TypeScript stays erasable.** Node runs the source directly, so no enums, namespaces or
 parameter properties. `erasableSyntaxOnly` makes them a type error.
@@ -84,7 +91,7 @@ and pull request bodies.
 ## Releasing
 
 Versions follow [Semantic Versioning](https://semver.org/). A `fix` is a patch, a `feat` is a
-minor version, and anything that removes or renames the theme, or changes an established
+minor version, and anything that removes or renames a theme, or changes an established
 colour role, is a major version.
 
 One pull request bumps `version` in `package.json` and adds the `CHANGELOG.md` entry, titled

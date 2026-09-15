@@ -8,4 +8,5 @@ All notable changes to this theme are recorded here. The format follows
 
 ### Added
 
-- The Vanessë dark theme: workbench, TextMate and semantic token colours, and a terminal palette
+- The Vanessë dark colour theme: workbench, TextMate and semantic token colours, and a terminal palette
+- Vanessë Icons, a file icon theme of 82 cloud badge icons
