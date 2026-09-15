@@ -107,7 +107,7 @@ docs, and CI fails if anything else would ship. See [SECURITY.md](SECURITY.md).
 | Runtime | Node 24, pinned in `.node-version` |
 | Tests | `node:test`, including WCAG contrast assertions |
 | Lint + format | Biome |
-| Packaging | `@vscode/vsce` for the Marketplace, `ovsx` for Open VSX |
+| Packaging | `@vscode/vsce` to build the VSIX, `ovsx` to publish it to Open VSX |
 | Package manager | pnpm |
 
 There are no runtime dependencies, and nothing in `devDependencies` ships. See
@@ -207,14 +207,17 @@ git push origin v0.2.0
 |---|---|
 | Verify | Reruns CI against the tagged commit and builds the VSIX |
 | Check release | Fails unless the tag matches `package.json` and `CHANGELOG.md` has an entry for it |
-| Publish | Waits for approval on the `release` environment, then publishes to the Marketplace and Open VSX |
+| Publish | Waits for approval on the `release` environment, then publishes to Open VSX |
 | GitHub release | Attaches the same VSIX, with the changelog entry as notes |
 
-Open VSX uses trusted publishing, minted from GitHub's OIDC token, so no Open VSX token
-exists. The Marketplace uses a `VSCE_PAT` secret that only the approval-gated `release`
-environment can read. See [ADR 0006](docs/adr/0006-release-by-tag-with-oidc.md). Both
-publish steps skip versions that already exist, so a failed release is re-run from the
-Actions tab.
+Open VSX uses trusted publishing, minted from GitHub's OIDC token, so no token exists. It
+skips versions that already exist, so a failed release is re-run from the Actions tab.
+
+The VS Code Marketplace gets the same file by hand. Download the `.vsix` from the GitHub
+release, then on the publisher's Manage page choose **New extension** for the first release,
+or **Update** on the extension after that. Microsoft only issues Marketplace publishing
+tokens through an Azure DevOps organisation linked to an Azure subscription, so the upload
+takes the place of a stored token. See [ADR 0006](docs/adr/0006-release-by-tag-with-oidc.md).
 
 ## Logos and trademarks
 

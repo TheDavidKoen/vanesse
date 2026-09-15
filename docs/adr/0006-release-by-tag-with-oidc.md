@@ -57,3 +57,18 @@ trusted publishing.
 
 - The token expires, and must be renewed in Azure DevOps and in the environment secret before it does.
 - A leaked token could publish to the `davidkoen` publisher until revoked. Revoke it in Azure DevOps first, then replace the secret.
+
+## Second amendment, 2026-09-15: manual Marketplace upload
+
+The token route failed too. A Marketplace token is created inside an Azure DevOps
+organisation, and Azure DevOps now refuses to create an organisation unless it is linked to
+an Azure subscription, the same signup the first amendment set out to avoid.
+
+The release workflow no longer publishes to the Marketplace. It publishes to Open VSX through
+trusted publishing and attaches the VSIX to the GitHub release, and the maintainer uploads
+that same file on the Marketplace publisher's Manage page.
+
+- No publishing token or secret exists anywhere, for either registry.
+- The Marketplace still receives exactly the file CI built and Open VSX published.
+- Each release has one manual step. If Microsoft restores token creation without a
+  subscription, the first amendment's `VSCE_PAT` step can return in a single change.

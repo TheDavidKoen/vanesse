@@ -102,7 +102,8 @@ git tag v0.2.0
 git push origin v0.2.0
 ```
 
-Approve the `release` environment when the workflow asks. See
+Approve the `release` environment when the workflow asks. Once the GitHub release appears,
+download its `.vsix` and upload it on the Marketplace publisher's Manage page. See
 [Publishing](README.md#publishing).
 
 ## Recording a decision

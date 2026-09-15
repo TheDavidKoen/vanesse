@@ -19,7 +19,8 @@ icons from a JSON file and SVGs, all named in `package.json`.
 - The package is an allowlist: `.vscodeignore` excludes everything except the docs, the listing icon,
   `package.json` and `themes/`, and `scripts/check-package.ts` fails CI if `vsce ls` reports
   anything but the expected files. The icon SVGs it expects come from `src/icons/glyphs.ts`.
-- Publishing credentials never enter the repository. The one stored credential, a Marketplace token, lives only on the approval-gated `release` environment, see ADR 0006.
+- Publishing credentials never enter the repository or CI secrets. Open VSX uses short-lived
+  OIDC credentials and the Marketplace takes a manual upload, see ADR 0006.
 
 ## Rationale
 

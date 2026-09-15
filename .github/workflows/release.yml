@@ -74,12 +74,8 @@ jobs:
           name: vanesse-vsix
           path: dist
 
+      # The VS Code Marketplace takes this same VSIX by manual upload, see ADR 0006.
       # --skip-duplicate makes re-running a partially failed release safe.
-      - name: VS Code Marketplace
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: pnpm exec vsce publish --packagePath dist/*.vsix --skip-duplicate
-
       - name: Open VSX
         run: pnpm exec ovsx publish dist/*.vsix --skip-duplicate
 
