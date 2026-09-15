@@ -54,7 +54,6 @@ jobs:
     environment: release
     permissions:
       contents: read
-      id-token: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -77,6 +76,8 @@ jobs:
       # The VS Code Marketplace takes this same VSIX by manual upload, see ADR 0006.
       # --skip-duplicate makes re-running a partially failed release safe.
       - name: Open VSX
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
         run: pnpm exec ovsx publish dist/*.vsix --skip-duplicate
 
   github-release:

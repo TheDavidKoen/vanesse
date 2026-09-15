@@ -210,8 +210,9 @@ git push origin v0.2.0
 | Publish | Waits for approval on the `release` environment, then publishes to Open VSX |
 | GitHub release | Attaches the same VSIX, with the changelog entry as notes |
 
-Open VSX uses trusted publishing, minted from GitHub's OIDC token, so no token exists. It
-skips versions that already exist, so a failed release is re-run from the Actions tab.
+Open VSX receives it through an `OVSX_PAT` token stored on the `release` environment, so only
+a `v` tag release you approve can use it. Open VSX does not support trusted publishing yet.
+It skips versions that already exist, so a failed release is re-run from the Actions tab.
 
 The VS Code Marketplace gets the same file by hand. Download the `.vsix` from the GitHub
 release, then on the publisher's Manage page choose **New extension** for the first release,

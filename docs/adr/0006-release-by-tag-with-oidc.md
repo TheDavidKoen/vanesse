@@ -72,3 +72,20 @@ that same file on the Marketplace publisher's Manage page.
 - The Marketplace still receives exactly the file CI built and Open VSX published.
 - Each release has one manual step. If Microsoft restores token creation without a
   subscription, the first amendment's `VSCE_PAT` step can return in a single change.
+
+## Third amendment, 2026-09-15: an Open VSX token
+
+Open VSX does not support trusted publishing yet. The live registry runs version 1.1.2, which
+has no trusted publisher settings and no token exchange, although the `ovsx` client already
+supports both.
+
+The Open VSX step now authenticates with an `OVSX_PAT` secret on the `release` environment.
+The environment's required reviewer and tag-only policy still apply, so only an approved `v`
+tag release can read it.
+
+- Open VSX tokens have no expiry and no scopes, so a leaked token could publish to any
+  namespace the account belongs to until it is deleted on open-vsx.org.
+- Once open-vsx.org supports trusted publishing, register `release.yml` as a trusted
+  publisher, delete the secret and the token, restore `id-token: write` on the publish job,
+  and remove its `env` block.
+- The Marketplace is unchanged: the same VSIX, uploaded by hand.
