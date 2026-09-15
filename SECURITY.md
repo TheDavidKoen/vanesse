@@ -24,6 +24,7 @@ package.json
 README.md
 CHANGELOG.md
 LICENSE
+images/icon.png
 themes/vanesse-color-theme.json
 themes/vanesse-icon-theme.json
 themes/icons/<icon>.svg, one per icon

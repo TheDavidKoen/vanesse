@@ -11,6 +11,7 @@ const ALLOWED_FILES = [
   "package.json",
   "themes/vanesse-color-theme.json",
   "themes/vanesse-icon-theme.json",
+  "images/icon.png",
   ...Object.keys(glyphs).map((name) => `themes/icons/${name}.svg`),
 ];
 
